@@ -1,6 +1,7 @@
 
 // Imports
 import express from "express";
+import bodyParser from "body-parser";
 
 
 // Global variables
@@ -12,36 +13,44 @@ app.set("view engine", "ejs");
 
 // Middleware
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Request Handlers
+// Homepage
 app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
+// All Blogs
+app.get("/blogs", (req, res) => {
+    res.render("blogs.ejs");
+})
+
+// Selected Blog
+app.get("/blog/:id", (req, res) => {
+    res.render("blog.ejs");
+});
+
+// About page 
 app.get("/about", (req, res) => {
-    res.render("create.ejs");
+    res.render("about.ejs");
 });
 
-app.get("/create", (req, res) => {
-    res.render("create.ejs");
+// Create blog 
+app.post("/submit", (req, res) => {
+    res.render("index.ejs");
 });
 
-app.post("/create", (req, res) => {
-    res.render("create.ejs");
+// Update blog 
+app.patch("/blog/edit", (req, res) => {
+    res.render("edit.ejs");
 });
 
-app.put("/create", (req, res) => {
-    res.render("create.ejs");
+// Delete blog
+app.delete("/delete/:id", (req, res) => {
+    res.redirect("/");
 });
 
-app.patch("/create", (req, res) => {
-    res.render("create.ejs");
-});
-
-app.delete("/create", (req, res) => {
-    res.render("create.ejs");
-});
-
+// Contact Page
 app.get("/contact", (req, res) => {
     res.render("contact.ejs");
 });
