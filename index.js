@@ -23,7 +23,23 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/create", (req, res) => {
-    res.render("about.ejs");
+    res.render("create.ejs");
+});
+
+app.post("/create", (req, res) => {
+    res.render("create.ejs");
+});
+
+app.put("/create", (req, res) => {
+    res.render("create.ejs");
+});
+
+app.patch("/create", (req, res) => {
+    res.render("create.ejs");
+});
+
+app.delete("/create", (req, res) => {
+    res.render("create.ejs");
 });
 
 app.get("/contact", (req, res) => {
