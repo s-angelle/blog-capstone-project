@@ -32,7 +32,12 @@ app.get("/blogs", (req, res) => {
 
 // Show Blog
 app.get("/blogs/:id", (req, res) => {
-    res.render("blog.ejs");
+    const index = blogPosts.findIndex((x) => x.id == req.params.id);
+    blogPosts[index].views++;
+    res.render("blog.ejs", {
+      bPost: blogPosts[index],
+    });
+    sortBlogPosts();
 });
 
 // About page 
