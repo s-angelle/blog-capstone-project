@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Homepage
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("home.ejs");
 });
 
 // All Blogs
@@ -25,8 +25,8 @@ app.get("/blogs", (req, res) => {
     res.render("blogs.ejs");
 })
 
-// Selected Blog
-app.get("/blog/:id", (req, res) => {
+// Show Blog
+app.get("/blogs/:id", (req, res) => {
     res.render("blog.ejs");
 });
 
@@ -36,17 +36,17 @@ app.get("/about", (req, res) => {
 });
 
 // Create blog 
-app.post("/submit", (req, res) => {
-    res.render("index.ejs");
+app.post("/blogs", (req, res) => {
+    res.redirect("/");
 });
 
-// Update blog 
-app.patch("/blog/edit", (req, res) => {
+// Edit blog
+app.put("/blogs/:id/edit", (req, res) => {
     res.render("edit.ejs");
-});
+})
 
 // Delete blog
-app.delete("/delete/:id", (req, res) => {
+app.delete("/blogs/:id", (req, res) => {
     res.redirect("/");
 });
 
