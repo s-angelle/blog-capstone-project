@@ -2,11 +2,15 @@
 // Imports
 import express from "express";
 import bodyParser from "body-parser";
+import multer from "multer";
+import {blogPosts, sortBlogPosts, formatDate} from "./data.js";
 
 
 // Global variables
 const app = express();
 const port = 3000;
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
 
 // Set view engine
 app.set("view engine", "ejs");

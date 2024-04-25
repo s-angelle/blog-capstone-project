@@ -57,7 +57,7 @@ export const blogs = [
 
   sortBlogPosts();
   
-  function formatDate(date) {
+  export function formatDate(date) {
     const months = [
       "January",
       "February",
