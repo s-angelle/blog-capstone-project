@@ -21,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Homepage
 app.get("/", (req, res) => {
-    res.render("home.ejs");
+    sortBlogPosts();
+    res.render("home.ejs", {bPosts: blogPosts});
 });
 
 // All Blogs
@@ -40,12 +41,21 @@ app.get("/about", (req, res) => {
 });
 
 // Create blog 
-app.post("/blogs", (req, res) => {
+app.post("/blogs", upload.single("image"),  (req, res) => {
+    blogPosts.push({
+        id: blogPosts.length,
+        title: req.body.title,
+        date: formatDate(new Date()),
+        views: 0,
+        image: "data:image/*;base64," + req.file.buffer.toString("base64"),
+        description: req.body.description,
+    })
+    sortBlogPosts();
     res.redirect("/");
 });
 
 // Edit blog
-app.put("/blogs/:id/edit", (req, res) => {
+app.put("/blogs/:id/edit",(req, res) => {
     res.render("edit.ejs");
 })
 
