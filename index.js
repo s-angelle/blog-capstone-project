@@ -61,7 +61,8 @@ app.post("/blogs", upload.single("image"),  (req, res) => {
 
 // Edit blog
 app.put("/blogs/:id/edit",(req, res) => {
-    res.render("edit.ejs");
+    const foundBlog = blogPosts[req.params.id];
+    res.render('edit.ejs', {blog: foundBlog});
 })
 
 // Delete blog
