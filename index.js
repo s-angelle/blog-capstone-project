@@ -27,7 +27,8 @@ app.get("/", (req, res) => {
 
 // All Blogs
 app.get("/blogs", (req, res) => {
-    res.render("blogs.ejs");
+    sortBlogPosts();
+    res.render("blogs.ejs", {bPosts: blogPosts});
 })
 
 // Show Blog
