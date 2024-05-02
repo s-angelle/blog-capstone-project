@@ -15,11 +15,12 @@ const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
 // Connect to database
-connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-connection.once('open', () => console.log('Connected to Mongo'))
+mongoose.connection.once('open', () => console.log('Connected to Mongo'))
+
 
 // Set view engine
 app.set("view engine", "ejs");
