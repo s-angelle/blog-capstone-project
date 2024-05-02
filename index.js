@@ -4,6 +4,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import multer from "multer";
 import {blogPosts, sortBlogPosts, formatDate} from "./data.js";
+import mongoose from "mongoose";
+import {connect, connection} from 'mongoose';
 
 
 // Global variables
@@ -11,6 +13,13 @@ const app = express();
 const port = 3000;
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
+
+// Connect to database
+connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+connection.once('open', () => console.log('Connected to Mongo'))
 
 // Set view engine
 app.set("view engine", "ejs");
